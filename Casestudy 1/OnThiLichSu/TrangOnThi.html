@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ÔN THI TRẮC NGHIỆM</title>
+</head>
+<style>
+  body {
+    background-image: url(img/background.jpg);
+    background-size: 100%;
+    text-align: center;
+  }
+  button {
+    background-color: #9a0808; /* Màu nền */
+    border: none; /* Không có viền */
+    color: white; /* Màu chữ */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    text-align: center; /* Canh giữa chữ */
+    text-decoration: none; /* Không gạch chân */
+    display: inline-block; /* Hiển thị inline-block */
+    font-size: 16px; /* Kích thước chữ */
+    margin: 4px 2px; /* Khoảng cách giữa các nút */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+    border-radius: 5px; /* Bo tròn góc */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+  }
+
+  button:hover {
+    background-color: #cf5959; /* Màu nền khi di chuột qua */
+  }
+  .question {
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    margin-top: 80px;
+    text-align: center; /* Canh giữa chữ */
+  }
+</style>
+<body>
+<button class="center" id="start" onclick="startGame()">START</button>
+<script>
+  function startGame() {
+    location.replace("CauHoi.html");
+  }
+</script>
+</body>
+</html>

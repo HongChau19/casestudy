@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÔN THI TRẮC NGHIỆM</title>
+  <style>
+    body {
+      background-image: url(img/Theme.gif);
+      background-size: 100%;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding-top: 20px;
+      text-align: center;
+    }
+    button {
+      background-color: #4CAF50; /* Màu nền */
+      border: none; /* Không có viền */
+      color: white; /* Màu chữ */
+      padding: 10px 20px; /* Khoảng cách bên trong */
+      text-align: center; /* Canh giữa chữ */
+      text-decoration: none; /* Không gạch chân */
+      display: inline-block; /* Hiển thị inline-block */
+      font-size: 16px; /* Kích thước chữ */
+      margin: 4px 2px; /* Khoảng cách giữa các nút */
+      cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+      border-radius: 5px; /* Bo tròn góc */
+      transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền */
+    }
+
+    button:hover {
+      background-color: #45a049; /* Màu nền khi di chuột qua */
+    }
+    .question {
+      font-size: 30px;
+      font-family: Arial, sans-serif;
+      margin-top: 80px;
+      text-align: left; /* Canh giữa chữ */
+      }
+    .result {
+      font-size: 20px;
+      margin-top: 80px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      text-align: left; /* Canh giữa chữ */
+    }
+    .answer {
+      font-size: 20px;
+      margin-top: 30px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      text-align: left;
+    }
+    .timer {
+      font-size: 18px;
+      color: red;
+      margin-bottom: 30px;
+    }
+   </style>
+</head>
+<body>
+<button class="center" id="readyGame">Bạn đã sẵn sàng?</button>
+<div id="game" style="display: none;"></div>
+<div class="timer" id="timer" style="display:none"></div>
+<div class="result" id="result"></div>
+<script>
+  const questions = [
+    {
+      question: "Câu hỏi 1: Trong giai đoạn 1941-1945, cách mạng Việt Nam thực hiện nhiệm vụ nào sau đây?",
+      answers: { a: "Hiện đại hóa xã hội chủ nghĩa", b: "Công nghiệp hóa xã hội chủ nghĩa.", c: "Xây dựng lực lượng vũ trang.", d: "Tiến hành điện khí  hóa nông thôn." },
+      correct: 'c'
+    },
+    {
+      question: "Câu hỏi 2: Phong trào Đồng khởi (1959-1960) ở Việt Nam dẫn đến sự ra đời của?",
+      answers: { a: "Nhà xuất Bản tiến bộ Nam đồng thư xã.", b: "Hội Liên hiệp các dân tộc bị áp bức ở Á Đông.", c: "tổ chức Việt Nam Quang phục hội.", d: "Mặt trận Dân tộc giải phóng miền Nam Việt Nam." },
+      correct: 'd'
+    },
+    {
+      question: "Câu hỏi 3: Năm 1920, Nguyễn Ái Quốc có hoạt động nào sau đây?",
+      answers: { a: "Tham gia sảng lập Đảng Cộng sản Pháp.", b: "Đọc Lởi kêu gọi toàn quốc kháng chiến.", c: "Soạn thảo Bản Tuyên ngôn độc lập.", d: "Kêu gọi nhân dân tăng gia sản xuất." },
+      correct: 'a'
+    },
+    {
+      question: "Câu hỏi 4: Năm 1954, thực dân Pháp có hoạt động nào sau đây?",
+      answers: { a: "Xây dựng tập đoàn cứ điểm Điện Biên Phủ.",
+        b: "Kí với triều đình nhà Nguyễn Hiệp ước Giáp Tuất.",
+        c: "Rút toàn bộ quân đội ra khỏi miền Bắc Việt Nam.",
+        d: "Rút toàn bộ quân đội ra khỏi ba nước Đông Dương." },
+      correct: 'a'
+    },
+    {
+      question: "Câu hỏi 5: Nội dung nào sau đây là bối cảnh thế giới dẫn đến sự bùng nổ phong trào dân chủ 1936-1939 ở Việt Nam?",
+      answers: { a: "Chính phủ Mặt trận Nhân dân lên cầm quyền ở Pháp.",
+                 b: "Quân giải phóng miền Nam thành lập.",
+                 c: "Trung ương Cục miền Nam ra đời.",
+                 d: "Việt Nam đang tiến hành công cuộc đổi mới đất nước." },
+      correct: 'a'
+    },
+    {
+      question: "Câu hỏi 6: Hiệp định Sơ bộ (6-3-1946) và Hiệp định Giơnevơ (21-7-1954) về Đông Dương có điểm chung nào sau đây?",
+      answers: { a: "Là văn Bản pháp lí ghi nhận đầy đủ các quyền dân tộc cơ Bản của Việt Nam.",
+        b: "Là kết quả của những trận quyết chiến chiến lược trên mặt trận quân sự.",
+        c: "Nằm trong tiến trình giành thẳng lợi từng bước để đi đến thẳng lợi hoàn toàn.",
+        d: "Đều phản ánh thiện chí hòa bình của các bên tham gia kí kết hiệp định." },
+      correct: 'c'
+    },
+    {
+      question: "Câu hỏi 7: Nội dung nào sau đây phản ánh không đúng công tác xây dựng mặt trận dân tộc của Đảng Cộng sản Đông Dương trong những năm 1936-1939?",
+      answers: { a: "Nhằm thực hiện nhiệm vụ chung của phong trào cách mạng thế giới.",
+        b: "Điều chỉnh nhiệm vụ chiến lược và đề ra nhiệm vụ trước mắt phù hợp.",
+        c: "Kết hợp hài hòa giữa nhiệm vụ của dân tộc và lực lượng dân chủ trên thế giới.",
+        d: "Đoàn kết các giai cấp và tầng lớp thực hiện nhiệm vụ chung của cách mạng." },
+      correct: 'b'
+    },
+    {
+      question: "Câu hỏi 8: Trong thời gian hoạt động ở Pháp (1917 – 1923), Nguyễn Ái Quốc làm chủ nhiệm kiêm chủ bút tờ báo nào sau đây?",
+      answers: { a: "Văn học – Nghệ thuật.",
+        b: "Văn hoá.",
+        c: "Người cùng khổ.",
+        d: "Văn nghệ." },
+      correct: 'c'
+    },
+    {
+      question: "Câu hỏi 9: Ở Việt Nam, chiếu Cần Vương (1885) kêu gọi lực lượng xã hội nào sau đây đứng lên vì vua mà kháng chiến?",
+      answers: { a: "Đại tư sản.",
+        b: "Chủ nô.",
+        c: "Văn thân, sĩ phu.",
+        d: "Tư bản mại sản." },
+      correct: 'c'
+    },
+    {
+      question: "Câu hỏi 10: Trong những năm 1949 – 1950, nội dung của kế hoạch Rơve do thực dân Pháp triển khai ở Việt Nam thuộc lĩnh vực nào sau đây?",
+      answers: { a: "Văn hoá.",
+        b: "Quân sự.",
+        c: "Giáo dục.",
+        d: "Y tế." },
+      correct: 'b'
+    },
+  ];
+
+  let currentQuestion = 0;
+  let correctAnswers = 0;
+  let timer;
+  const timeLimit = 60;
+
+  document.getElementById('readyGame').onclick = readyGame;
+
+  function readyGame() {
+    currentQuestion = 0;
+    correctAnswers = 0; // Đặt lại số câu trả lời đúng
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('game').style.display = 'block';
+    document.getElementById('timer').style.display = 'block'; // Hiển thị đồng hồ
+    startTimer();
+    showQuestion();
+  }
+
+  function showQuestion() {
+    if (currentQuestion >= questions.length) {
+      clearInterval(timer);
+      document.getElementById('game').style.display = 'none';
+      document.getElementById('result').innerHTML = `Chúc mừng! Bạn đã hoàn thành trò chơi! Số câu trả lời đúng: ${correctAnswers}/${questions.length}`;
+      document.getElementById('timer').style.display = 'none'; // Ẩn đồng hồ khi hoàn thành
+      return;
+    }
+
+    const question = questions[currentQuestion];
+    const answers = question.answers;
+    const gameDiv = document.getElementById('game');
+    gameDiv.innerHTML = `<div class="question">${question.question}</div>`;
+
+    for (const [key, value] of Object.entries(answers)) {
+      gameDiv.innerHTML += `
+                    <div class="answer">
+                        <input type="radio" name="answer" id="${key}" value="${key}">
+                        <label for="${key}">${value}</label>
+                    </div>
+                `;
+    }
+
+    gameDiv.innerHTML += `<button onclick="checkAnswer()">Gửi đáp án</button>`;
+  }
+
+  function startTimer() {
+    let timeRemaining = timeLimit;
+    document.getElementById('timer').innerText = `${timeRemaining} giây`;
+    timer = setInterval(() => {
+      timeRemaining--;
+      document.getElementById('timer').innerText = `${timeRemaining} giây`;
+      if (timeRemaining <= 0) {
+        clearInterval(timer);
+        document.getElementById('game').style.display = 'none';
+        document.getElementById('result').innerHTML = `Hết thời gian! Số câu trả lời đúng: ${correctAnswers}/${questions.length}`;
+        document.getElementById('timer').style.display = 'none'; // Ẩn đồng hồ khi hết thời gian
+      }
+    }, 1000);
+  }
+
+  function checkAnswer() {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    if (!selectedAnswer) {
+      alert("Vui lòng chọn một đáp án!");
+      return;
+    }
+
+    const correctAnswer = questions[currentQuestion].correct;
+
+    if (selectedAnswer.value === correctAnswer) {
+      correctAnswers++; // Tăng số câu trả lời đúng
+      alert("Đúng rồi!");
+    } else {
+      alert(`Sai rồi! Đáp án đúng là: ${questions[currentQuestion].answers[correctAnswer]}`);
+    }
+
+    currentQuestion++; // Tăng chỉ số câu hỏi ngay lập tức
+    showQuestion(); // Hiển thị câu hỏi tiếp theo
+  }
+</script>
+</body>
+</html>
