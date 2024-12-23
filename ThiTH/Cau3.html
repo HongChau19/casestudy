@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 3</title>
+</head>
+<body>
+<script>
+
+  function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  }
+  function getDaysInMonth(month, year) {
+    switch (month) {
+      case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+        return 31;
+      case 4: case 6: case 9: case 11:
+        return 30;
+      case 2:
+        return isLeapYear(year) ? 29 : 28;
+      default:
+        return 0;
+    }
+  }
+
+  function isValidDateFormat(dateStr) {
+    const regex = /^(0[1-9]|1[0-2])\/\d{4}$/;
+    return regex.test(dateStr);
+  }
+
+  function calculateDaysInMonth() {
+    const input = prompt("Nhập tháng và năm theo định dạng MM/yyyy:");
+
+    if (!isValidDateFormat(input)) {
+      alert("Vui lòng nhập theo định dạng MM/yyyy.");
+      return;
+    }
+
+    const [month, year] = input.split('/').map(Number);
+    const days = getDaysInMonth(month, year);
+
+    if (days === 0) {
+      alert("Tháng không hợp lệ.");
+    } else {
+      alert(`Tháng ${month} năm ${year} có ${days} ngày.`);
+    }
+  }
+
+  calculateDaysInMonth();
+
+</script>
+</body>
+</html>

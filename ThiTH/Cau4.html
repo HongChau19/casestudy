@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 4</title>
+    <style>
+    /* tag selector */
+    body {
+      padding: 50px;
+    }
+   table {
+      width: 85%;
+      border-collapse: collapse;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 4px;
+      text-align: left;
+    }
+    th {
+      background-color: #c6c6c6;
+    }
+    </style>
+    </div>
+</head>
+<h2 style="text-align: center">Quản lý Công Nhân</h2>
+<body>
+<div id="result"></div>
+  <script>
+    let congnhan = [];
+
+    function CongNhan(STT, HoTen, NgaySinh, DiaChi, Luong, ChucVu) {
+      this.STT = STT;
+      this.HoTen = HoTen;
+      this.NgaySinh = NgaySinh;
+      this.DiaChi = DiaChi;
+      this.Luong = Luong;
+      this.ChucVu = ChucVu;
+    }
+
+    function themCongNhan(STT, HoTen, NgaySinh, DiaChi, Luong, ChucVu) {
+      const congNhanMoi = new CongNhan(STT, HoTen, NgaySinh, DiaChi, Luong, ChucVu);
+      congnhan.push(congNhanMoi);
+    }
+
+    function khoiTaoDuLieu() {
+      themCongNhan('1', 'Trương Tấn A', '11-11-1997', 'Quảng Nam', '2000', 'Abc');
+      themCongNhan('2', 'Trương Tấn B', '11-11-1998', 'Đà Nẵng', '2000', 'Abc');
+      themCongNhan('3', 'Trương Tấn C', '11-11-1999', 'Đà Nẵng', '2000', 'Abc');
+    }
+
+    function sapXepCongNhan() {
+      congnhan.sort((a, b) => a.HoTen.localeCompare(b.HoTen));
+    }
+    function hienThiCongNhan() {
+      const result = document.getElementById("result");
+      let table = '<table><tr><th>STT</th><th>Họ và Tên</th><th>Ngày Sinh</th><th>Địa Chỉ</th><th>Lương</th><th>Chức Vụ</th></tr>';
+
+      for (let i = 0; i < congnhan.length; i++) {
+        table += `<tr>
+                    <td>${congnhan[i].STT}</td>
+                    <td>${congnhan[i].HoTen}</td>
+                    <td>${congnhan[i].NgaySinh}</td>
+                    <td>${congnhan[i].DiaChi}</td>
+                    <td>${congnhan[i].Luong}</td>
+                    <td>${congnhan[i].ChucVu}</td>
+                </tr>`;
+      }
+      table += '</table>';
+      result.innerHTML = table;
+    }
+
+    function quanLyCongNhan() {
+      khoiTaoDuLieu();
+      sapXepCongNhan();
+      hienThiCongNhan();
+    }
+    quanLyCongNhan();
+  </script>
+</body>
+</html>

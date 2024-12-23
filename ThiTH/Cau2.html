@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 2</title>
+</head>
+<script>
+  function isPerfectNumber(num) {
+    if (num <= 0) return false;
+
+    let sum = 0;
+
+    // Tính tổng các ước số
+    for (let i = 1; i <= num / 2; i++) {
+      if (num % i === 0) {
+        sum += i;
+      }
+    }
+
+    return sum === num;
+  }
+
+  function checkNumber() {
+    const input = prompt("Nhập một số nguyên dương:");
+    const number = parseInt(input);
+    if (isNaN(number) || number <= 0) {
+      alert("Vui lòng nhập một số nguyên dương hợp lệ.");
+      return;
+    }
+    const result = isPerfectNumber(number);
+    alert(`Số ${number} ${result ? "true" : "false"}`);
+  }
+  checkNumber();
+</script>
+</body>
+</html>

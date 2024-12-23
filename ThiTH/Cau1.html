@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 1</title>
+</head>
+<body>
+<script>
+    const MAX_SIZE = 50;
+    let arr = [];
+    let sum = 0;
+    let count = 0;
+
+    function addNumber() {
+        while (arr.length < MAX_SIZE) {
+            let input = prompt("Nhập một số nguyên (hoặc nhập '!' để kết thúc):");
+            if (input.toLowerCase() === '!') {
+                break;
+            }
+            if (!isNaN(input) && Number.isInteger(parseFloat(input))) {
+                arr.push(parseInt(input));
+            } else {
+                alert("Vui lòng nhập một số nguyên hợp lệ!");
+            }
+        }
+        if (arr.length >= MAX_SIZE) {
+            alert("Bạn đã nhập đủ 50 phần tử.");
+        }
+
+        displayResults();
+    }
+
+    function calculateAverage() {
+        for (let num of arr) {
+            if (num % 3 === 0) {
+                sum += num;
+                count++;
+            }
+        }
+        return (count > 0) ? (sum / count) : 0;
+    }
+
+    function displayResults() {
+        let average = calculateAverage();
+        alert(`Mảng đã nhập: ${arr.join(", ")}\nTrung bình cộng các số chia hết cho 3 là: ${average}`);
+    }
+    addNumber();
+</script>
+</body>
+</html>
