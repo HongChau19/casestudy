@@ -77,7 +77,7 @@
     },
     {
       question: "Câu hỏi 3: Năm 1920, Nguyễn Ái Quốc có hoạt động nào sau đây?",
-      answers: { a: "Tham gia sảng lập Đảng Cộng sản Pháp.", b: "Đọc Lởi kêu gọi toàn quốc kháng chiến.", c: "Soạn thảo Bản Tuyên ngôn độc lập.", d: "Kêu gọi nhân dân tăng gia sản xuất." },
+      answers: { a: "Tham gia sảng lập Đảng Cộng sản Pháp.", b: "Đọc Lời kêu gọi toàn quốc kháng chiến.", c: "Soạn thảo Bản Tuyên ngôn độc lập.", d: "Kêu gọi nhân dân tăng gia sản xuất." },
       correct: 'a'
     },
     {
@@ -150,7 +150,7 @@
     correctAnswers = 0; // Đặt lại số câu trả lời đúng
     document.getElementById('result').innerHTML = '';
     document.getElementById('game').style.display = 'block';
-    document.getElementById('timer').style.display = 'block'; // Hiển thị đồng hồ
+    document.getElementById('timer').style.display = 'block';
     startTimer();
     showQuestion();
   }
@@ -159,8 +159,8 @@
     if (currentQuestion >= questions.length) {
       clearInterval(timer);
       document.getElementById('game').style.display = 'none';
-      document.getElementById('result').innerHTML = `Chúc mừng! Bạn đã hoàn thành trò chơi! Số câu trả lời đúng: ${correctAnswers}/${questions.length}`;
-      document.getElementById('timer').style.display = 'none'; // Ẩn đồng hồ khi hoàn thành
+      document.getElementById('result').innerHTML = `Chúc mừng! Bạn đã hoàn thành bài trắc nghiệm! Số câu trả lời đúng: ${correctAnswers}/${questions.length}`;
+      document.getElementById('timer').style.display = 'none';
       return;
     }
 
@@ -191,7 +191,7 @@
         clearInterval(timer);
         document.getElementById('game').style.display = 'none';
         document.getElementById('result').innerHTML = `Hết thời gian! Số câu trả lời đúng: ${correctAnswers}/${questions.length}`;
-        document.getElementById('timer').style.display = 'none'; // Ẩn đồng hồ khi hết thời gian
+        document.getElementById('timer').style.display = 'none';
       }
     }, 1000);
   }
@@ -206,14 +206,14 @@
     const correctAnswer = questions[currentQuestion].correct;
 
     if (selectedAnswer.value === correctAnswer) {
-      correctAnswers++; // Tăng số câu trả lời đúng
+      correctAnswers++;
       alert("Đúng rồi!");
     } else {
       alert(`Sai rồi! Đáp án đúng là: ${questions[currentQuestion].answers[correctAnswer]}`);
     }
 
-    currentQuestion++; // Tăng chỉ số câu hỏi ngay lập tức
-    showQuestion(); // Hiển thị câu hỏi tiếp theo
+    currentQuestion++;
+    showQuestion();
   }
 </script>
 </body>
